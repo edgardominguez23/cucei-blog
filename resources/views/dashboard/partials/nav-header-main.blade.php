@@ -13,17 +13,24 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{route('post.index')}}">Post</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{route('category.index')}}">Categorias</a>
+            <a class="dropdown-item" href="{{route('user.index')}}">Usuario</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{route('category.index')}}">Categoria</a>
           </div>
         </li>
       </ul>
       
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#">Login<span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Logout<span class="sr-only"></span></a>
+          <a class="nav-link" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+           {{ __('Logout') }}
+          </a>
+
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+          </form>
         </li>
   
         <li class="nav-item dropdown">
