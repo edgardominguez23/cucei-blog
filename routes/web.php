@@ -22,6 +22,7 @@ Route::resource('dashboard/category', CategoryController::class);
 Route::resource('dashboard/user', UserController::class);
 
 Route::get('/', [ApiWebController::class,'index'])->name('index');
+Route::get('/detail/{id}', [ApiWebController::class,'detail']);
 
 Auth::routes();
 

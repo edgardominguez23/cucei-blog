@@ -6,6 +6,7 @@
                 <h5 class="card-title">{{post.title}}</h5>
                 <p class="card-text">{{post.content}}</p>
                 <button class="btn btn-primary" v-on:click="postClick(post)">Resumen</button>
+                <router-link class="btn btn-success" :to="{name: 'detail', params: {id: post.id}}">Visualizar</router-link>
             </div>
         </div>
          <modal-post :post="postSelected"></modal-post>
@@ -13,42 +14,28 @@
 </template>
 <script>
 export default {
+    created() {
+        this.getPost();
+    },
     methods:{
         postClick: function(p){
             this.postSelected = p;
+        },
+        getPost(){
+            fetch('/api/post').then(response => response.json())
+            .then(json => this.posts = json.data.data);
+          /*  fetch('/api/post').then(function(response){
+                return response.json();
+            }).then(function(json){
+                console.log(json.data.data);
+            });*/
         }
     },
       data: function () {
       return {
         postSelected: "",
-        posts: [
-            {
-                title:"Titulo 1",
-                image:"1622669223.png",
-                content:"Next, we will create a fresh Vue application instance and attach it to the page. Then, you may begin adding components to this application or customize the JavaScript scaffolding to fit your unique needs."
-            },
-            {
-                title:"Titulo 2",
-                image:"1622669223.png",
-                content:"Next, we will create a fresh Vue application instance and attach it to the page. Then, you may begin adding components to this application or customize the JavaScript scaffolding to fit your unique needs."
-            },
-            {
-                title:"Titulo 3",
-                image:"1622669223.png",
-                content:"Next, we will create a fresh Vue application instance and attach it to the page. Then, you may begin adding components to this application or customize the JavaScript scaffolding to fit your unique needs."
-            },
-            {
-                title:"Titulo 4",
-                image:"1622669223.png",
-                content:"Next, we will create a fresh Vue application instance and attach it to the page. Then, you may begin adding components to this application or customize the JavaScript scaffolding to fit your unique needs."
-            },
-            {
-                title:"Titulo 5",
-                image:"1622669223.png",
-                content:"Next, we will create a fresh Vue application instance and attach it to the page. Then, you may begin adding components to this application or customize the JavaScript scaffolding to fit your unique needs."
-            }
-        ]
+        posts: []
       };
-    },
+    }
 };
 </script>
