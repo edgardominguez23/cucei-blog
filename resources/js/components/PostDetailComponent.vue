@@ -3,10 +3,11 @@
     <div v-if="post">
         <div class="card text-white bg-dark mt-3">
             <div class="card-header">
-                <img class="card-img-top" :src="'/images/' + post.image"/>
+                <img class="card-img-top" :src="'/images/' + post.image.image"/>
             </div>
             <div class="card-body">
                 <h1 class="card-title">{{post.title}}</h1>
+                 <router-link class="btn btn-success" :to="{name: 'post-category', params: {category_id: post.category.id}}">{{post.category.title}}</router-link>
                 <p class="card-text">{{post.content}}</p>
             </div>
         </div>
@@ -19,21 +20,18 @@
 <script>
 export default {
     created() {
-        console.log("Hola en VUE JS" + this.$route.params.id);
+       this.getPost();
     },
     methods:{
         getPost: function(){
-            
+            fetch('/api/post/' + this.$route.params.id).then(response => response.json())
+            .then(json => this.post = json.data);
         }
     },
       data: function () {
       return {
         postSelected: "",
-        post: {
-                title:"Titulo 1",
-                image:"1622669223.png",
-                content:"Next, we will create a fresh Vue application instance and attach it to the page. Then, you may begin adding components to this application or customize the JavaScript scaffolding to fit your unique needs."
-            }
+        post: ""
       };
     },
 };
