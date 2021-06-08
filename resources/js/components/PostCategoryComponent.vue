@@ -1,16 +1,13 @@
 <template>
     <div>
         <h1>{{category.title}}</h1>
-        <div class="card text-white bg-dark mb-3" v-for="post in posts" :key="post.title">
-            <img class="card-img-top" :src="'/images/' + post.image"/>
-            <div class="card-body">
-                <h5 class="card-title">{{post.title}}</h5>
-                <p class="card-text">{{post.content}}</p>
-                <button class="btn btn-primary" v-on:click="postClick(post)">Resumen</button>
-                <router-link class="btn btn-success" :to="{name: 'detail', params: {id: post.id}}">Visualizar</router-link>
-            </div>
-        </div>
-         <modal-post :post="postSelected"></modal-post>
+        <post-list-default 
+       :key="currentPage"
+       @getCurrentPage="getCurrentPage"
+       v-if="total > 0" 
+       :posts="posts" 
+       :pCurrentPage="currentPage"
+       :total="total"></post-list-default>
     </div>
 </template>
 <script>
@@ -23,24 +20,31 @@ export default {
             this.postSelected = p;
         },
         getPosts(){
-            fetch('/api/post/' + this.$route.params.category_id + '/category').then(response => response.json())
+            fetch('/api/post/' + this.$route.params.category_id + '/category?page='+ this.currentPage).then(response => response.json())
             .then(json => 
             {
-                this.posts = json.data.posts.data,
-                this.category = json.data.category
+                this.posts = json.data.posts.data;
+                this.total = json.data.posts.last_page;
+                this.category = json.data.category;
             });
           /*  fetch('/api/post').then(function(response){
                 return response.json();
             }).then(function(json){
                 console.log(json.data.data);
             });*/
+        },
+        getCurrentPage:function(val){
+            this.currentPage = val;
+            this.getPosts();
         }
     },
       data: function () {
       return {
         postSelected: "",
         posts: [],
-        category: ""
+        total: 0,
+        category: "",
+        currentPage:1,
       };
     }
 };
