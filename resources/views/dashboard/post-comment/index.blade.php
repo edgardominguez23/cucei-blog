@@ -1,7 +1,7 @@
 @extends('dashboard.master')
 @section('content')
 
-<a class="btn btn-primary" href="{{route("post.create")}}"> Crear</a>
+@if (count($postComments) > 0)
 
 <table class="table">
     <thead>
@@ -13,10 +13,10 @@
                 Titulo
             </td>
             <td>
-                Categoria
+                Usuario
             </td>
             <td>
-                Posteado
+                Aprovado
             </td>
             <td>
                 Creacion
@@ -30,40 +30,36 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($posts as $post)
+        @foreach($postComments as $postComment)
             <tr>
                 <td>
-                    {{$post->id}}
+                    {{$postComment->id}}
                 </td>
                 <td>
-                    {{$post->title}}
+                    {{$postComment->title}}
                 </td>
                 <td>
-                    {{$post->category->title}}
+                    {{$postComment->user->name}}
                 </td>
                 <td>
-                    {{$post->posted}}
+                    {{$postComment->approved}}
                 </td>
                 <td>
-                    {{$post->created_at->format('d-m-Y')}}
+                    {{$postComment->created_at->format('d-m-Y')}}
                 </td>
                 <td>
-                    {{$post->updated_at->format('d-m-Y')}}
+                    {{$postComment->updated_at->format('d-m-Y')}}
                 </td>
                 <td>
-                    <a href="{{ route('post.show',$post->id) }}" class="btn btn-primary">Show</a>
-                    <a href="{{ route('post.edit',$post->id) }}" class="btn btn-primary">Edit</a>
-                    <a href="{{ route('post-comment.post',$post->id) }}" class="btn btn-primary">Comentarios</a>
-                    
-                        <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $post->id }}" class="btn btn-danger">Delete</button>
-                
+                    <a href="{{ route('post-comment.show',$postComment->id) }}" class="btn btn-primary">Show</a>
+                    <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $postComment->id }}" class="btn btn-danger">Delete</button>
                 </td>
             </tr>
         @endforeach
     </tbody>
 </table>
 
-{{$posts->links()}}
+{{$postComments->links()}}
 
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -75,12 +71,12 @@
           </button>
         </div>
         <div class="modal-body">
-            <p>Estas seguro de eliminar el post seleccionado?</p>
+            <p>Estas seguro de eliminar el postComment seleccionado?</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-          <form id="formDelete" action="{{ route('post.destroy',0 )}}" data-action="{{ route('post.destroy',0 )}}" method="post">
+          <form id="formDelete" action="{{ route('post-comment.destroy',0 )}}" data-action="{{ route('post-comment.destroy',0 )}}" method="post">
             @method('delete')
             @csrf
             <button type="submit" class="btn btn-danger">Delete</button>
@@ -100,8 +96,11 @@
         
         $('#formDelete').attr('action',action + id)
         var modal = $(this)
-        modal.find('.modal-title').text('Delete post with id: ' + id)
+        modal.find('.modal-title').text('Delete postComment with id: ' + id)
         });
     };
 </script>
+@else
+<h1>No hay comentarios para el post seleccionado</h1>
+@endif
 @endsection

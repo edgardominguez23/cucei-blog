@@ -68,7 +68,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-          <form id="formDelete" action="{{ route('contact.destroy',0 )}}" data-action="{{ route('contact.destroy',0 )}}" method="contact">
+          <form id="formDelete" action="{{ route('contact.destroy',0 )}}" data-action="{{ route('contact.destroy',0 )}}" method="post">
             @method('delete')
             @csrf
             <button type="submit" class="btn btn-danger">Delete</button>
