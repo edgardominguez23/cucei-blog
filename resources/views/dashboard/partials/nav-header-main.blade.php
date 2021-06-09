@@ -16,6 +16,8 @@
             <a class="dropdown-item" href="{{route('user.index')}}">Usuario</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{route('category.index')}}">Categoria</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{route('contact.index')}}">Contacto</a>
           </div>
         </li>
       </ul>

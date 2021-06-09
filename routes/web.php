@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\web\ApiWebController;
 use App\Http\Controllers\dashboard\PostController;
 use App\Http\Controllers\dashboard\UserController;
+use App\Http\Controllers\dashboard\ContactController;
 use App\Http\Controllers\dashboard\CategoryController;
 
 /*
@@ -20,6 +21,9 @@ Route::resource('dashboard/post', PostController::class);
 Route::post('dashboard/post/{post}/image', [PostController::class,'image'])->name('post.image');
 Route::resource('dashboard/category', CategoryController::class);
 Route::resource('dashboard/user', UserController::class);
+Route::resource('dashboard/contact', ContactController::class)->only([
+    'index','show','destroy',
+]);
 
 Route::get('/', [ApiWebController::class,'index'])->name('index');
 Route::get('/detail/{id}', [ApiWebController::class,'detail']);
