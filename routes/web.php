@@ -31,6 +31,7 @@ Route::resource('dashboard/post-comment', PostCommentController::class)->only([
 ]);
 
 Route::get('dashboard/post-comment/{post}/post',[PostCommentController::class,'post'])->name('post-comment.post');
+Route::post('dashboard/post-comment/process/{postComment}',[PostCommentController::class,'process']);
 
 Route::get('/', [ApiWebController::class,'index'])->name('index');
 Route::get('/detail/{id}', [ApiWebController::class,'detail']);
