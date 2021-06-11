@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\PostImage;
@@ -36,8 +37,9 @@ class PostController extends Controller
      */
     public function create()
     {
+        $tags = Tag::pluck('id','title');
         $categories = Category::pluck('id', 'title');
-        return view("dashboard.post.create",['post' => new Post(), "categories"=>$categories]);
+        return view("dashboard.post.create",['post' => new Post(), "categories"=>$categories, "tags" => $tags]);
     }
 
     /**
@@ -52,7 +54,9 @@ class PostController extends Controller
         //dd($request->all());
         //return "Alan".$request->input('title');
 
-        Post::create($request->validated());
+        $post = Post::create($request->validated());
+
+        $post->tags()->sync($request->tags_id);
 
         return back()->with('status','Post create with exit');
     }
@@ -78,8 +82,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $tags = Tag::pluck('id','title');
+
         $categories = Category::pluck('id', 'title');
-        return view("dashboard.post.edit",["post"=>$post, "categories"=>$categories]);
+        return view("dashboard.post.edit",["post"=>$post, "categories"=>$categories, "tags" => $tags]);
     }
 
     /**
@@ -91,6 +97,7 @@ class PostController extends Controller
      */
     public function update(StorePostPost $request, Post $post)
     {
+        $post->tags()->sync($request->tags_id);
         $post->update($request->validated());
 
         return back()->with('status','Post updated successfully');

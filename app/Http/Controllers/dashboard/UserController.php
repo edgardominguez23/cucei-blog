@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserPost;
 use App\Http\Requests\UpdateUserPut;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -52,7 +51,7 @@ class UserController extends Controller
                 'name' => $request['name'],
                 'rol_id' => 1, //Usuario administrador
                 'email' => $request['email'],
-                'password' => Hash::make($request['password']),
+                'password' => $request['password'],
             ]
         );
 

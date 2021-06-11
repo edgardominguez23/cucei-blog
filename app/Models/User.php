@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -45,5 +46,9 @@ class User extends Authenticatable
 
     public function rol(){
         return $this->belongsTo(Rol::class);
+    }
+
+    public function setPasswordAttribute($value){ //Muttator to hash the password
+        $this->attributes["password"] = Hash::make($value);
     }
 }
