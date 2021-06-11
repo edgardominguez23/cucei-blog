@@ -108,28 +108,6 @@
 </div>
 
 <script>
-    document.querySelector(".approved").forEach(button => button.addEventListener("click", function(){
-
-        var id = button.getAttribute("data-id");
-        console.log(id);
-        /*
-        $.ajax({
-            method: "POST",
-            url: "{{ URL::to("/")}}/dashboard/post-comment/process/"+id,
-            data:{'_token': '{{ csrf_token() }}'}
-        })
-        .done(function( aprroved ){
-            if(aprroved == 1){
-                $(button).removeClass('btn-danger');
-                $(button).addClass('btn-success');
-                $(button).text("Aprovado")
-            }else{
-                $(button).removeClass('btn-success');
-                $(button).addClass('btn-danger');
-                $(button).text("Rechazado")
-            }
-        });*/
-    }))
     window.onload = function(){
         $('#deleteModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
@@ -148,6 +126,29 @@
 @endif
 
 <script>
+    document.querySelectorAll(".approved").forEach(button => button.addEventListener("click",function(){
+        console.log("Click Approved");
+
+        var id = button.getAttribute("data-id");
+
+        $.ajax({
+            method: "POST",
+            url: "{{URL::to("/")}}/dashboard/post-comment/process/"+id,
+            data: { '_token' : '{{ csrf_token() }}'}
+        })
+        .done(function(aprroved){
+            if(aprroved == 1){
+                $(button).removeClass('btn-danger');
+                $(button).addClass('btn-success');
+                $(button).text("Aprovado");
+            }else{
+                $(button).removeClass('btn-success');
+                $(button).addClass('btn-danger');
+                $(button).text("Rechazado");
+            }
+        });
+    }));
+
     window.onload = function(){
         $('#filterForm').submit(function(){
              var action = $(this).attr('action');
