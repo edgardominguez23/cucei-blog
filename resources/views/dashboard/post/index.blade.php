@@ -1,7 +1,9 @@
 @extends('dashboard.master')
 @section('content')
 
-<a class="btn btn-primary" href="{{route("post.create")}}"> Crear</a>
+<a class="btn btn-primary" href="{{route("post.create")}}"> 
+    <i class="fa fa-plus"></i> Crear
+</a>
 
 <table class="table">
     <thead>
@@ -52,10 +54,16 @@
                 </td>
                 <td>
                     <a href="{{ route('post.show',$post->id) }}" class="btn btn-primary">Show</a>
-                    <a href="{{ route('post.edit',$post->id) }}" class="btn btn-primary">Edit</a>
-                    <a href="{{ route('post-comment.post',$post->id) }}" class="btn btn-primary">Comentarios</a>
+                    <a href="{{ route('post.edit',$post->id) }}" class="btn btn-primary">
+                        <i class="fa fa-pen"></i> Edit
+                    </a>
+                    <a href="{{ route('post-comment.post',$post->id) }}" class="btn btn-primary">
+                        <i class="fa fa-comment-dots"></i> Comentarios
+                    </a>
                     
-                        <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $post->id }}" class="btn btn-danger">Delete</button>
+                    <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $post->id }}" class="btn btn-danger">
+                       <i class="fa fa-trash-alt"></i> Delete
+                    </button>
                 
                 </td>
             </tr>
