@@ -1,49 +1,95 @@
 <template>
     <div class="col-8 offset-2">
         <div class="card">
-            <div class="card-header">
-                <img width="230" src="/images/contacto.png" class="mx-auto d-block" alt="">
-            </div>
             <div class="card-body">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Nombre</span>
+                <form @submit.prevent="onSubmit" class="contact">
+                    <BaseInput label="Nombre" v-model="$v.form.name.$model" :validator="$v.form.name"></BaseInput>
+                    <BaseInput label="Email" type="email" v-model="$v.form.email.$model" :validator="$v.form.email"></BaseInput>
+                    <BaseInput label="Telefono" v-model="$v.form.phone.$model" :validator="$v.form.phone"></BaseInput>
+                    <div class="form-group">
+                    <label>Contenido</label>
+                    <textarea 
+                    v-model="$v.form.content.$model" 
+                    class="form-control" 
+                    :class="{
+                        'is-valid':!$v.form.content.$error && $v.form.content.$dirty,
+                        'is-invalid':$v.form.content.$error
+                    }"
+                    rows="3"></textarea>
                     </div>
-                    <input type="text" class="form-control" v-model="name">
-                </div>
-                <div class="input-group mt-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Email</span>
-                    </div>
-                    <input type="email" class="form-control" v-model="email">
-                </div>
-                <div class="input-group mt-3">
-                    <textarea class="form-control" placeholder="Comentario" v-model="comentario"></textarea>
-                </div>
-
-                <button @click="saveContact" class="btn btn-primary mt-3 btn-lg">Guardar</button>
-
+                    <button 
+                    :disabled="!formValid"
+                    type="submit" 
+                    class="btn btn-primary">Enviar</button>
+                    <button class="btn btn-danger bnt-sm" @click="resetForm">Clear</button>
+                </form>
             </div>
         </div>
+        
     </div>
 </template>
 <script>
+import BaseInput from "../components/BaseInput.vue";
+import { required, minLength, email, numeric} from 'vuelidate/lib/validators';
 export default {
-    created() {
+    components: {BaseInput},
+    data() {
+        return {
+            form:{
+                name:"",
+                email:"",
+                phone:"",
+                content:""
+            }
+        };
     },
-    methods:{
-        saveContact: function(){
-            return
-            /*fetch('/api/post/' + this.$route.params.id).then(response => response.json())
-            .then(json => this.post = json.data);*/
+    validations:{
+        form:{
+            name:{
+                required,
+                minLength: minLength(2)
+            },
+            email:{
+                required,
+                email
+            },
+            phone:{
+                required,
+                numeric,
+                minLength: minLength(10)
+            },
+            content:{
+                required
+            }
         }
     },
-      data: function () {
-      return {
-          name: "",
-          email: "",
-          comentario: ""
-      };
+    methods: {
+        resetForm(){
+            this.$v.form.name.$model = ""
+            this.$v.form.phone.$model = ""
+            this.$v.form.email.$model = ""
+            this.$v.form.content.$model = ""
+            this.$v.$reset()
+            document.querySelectorAll("form.contact input, form.contact textarea").forEach(e => e.value="")
+        },
+        onSubmit(){
+            if(!this.formValid){
+                return
+            }
+
+            axios.post('/api/contact',{
+                name:       this.$v.form.name.$model,
+                email:      this.$v.form.email.$model,
+                commentary: this.$v.form.content.$model,
+            }).then(function(response){
+                console.log(response.data);
+            })
+        }
     },
+    computed:{
+        formValid(){
+            return !this.$v.$invalid;
+        }
+    }
 };
 </script>

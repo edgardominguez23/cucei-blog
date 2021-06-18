@@ -7,6 +7,7 @@
 require('./bootstrap');
 
 import router from './assets/router.js';
+import Vuelidate from 'vuelidate';
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -28,6 +29,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 //Vue.component('list-posts', require('./components/PostListComponent.vue').default);
 Vue.component('modal-post', require('./components/PostModalComponent.vue').default);
 Vue.component('post-list-default', require('./components/PostListDefaultComponent.vue').default);
+
+Vue.use(Vuelidate);
 
 const app = new Vue({
     el: '#app',

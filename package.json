@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.3",
-        "vue-plain-pagination": "^0.3.0"
+        "vue-plain-pagination": "^0.3.0",
+        "vuelidate": "^0.7.6"
     }
 }
