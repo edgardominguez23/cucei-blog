@@ -5,71 +5,80 @@
     <i class="fa fa-plus"></i> Crear
 </a>
 
-<table class="table">
-    <thead>
-        <tr>
-            <td>
-                Id
-            </td>
-            <td>
-                Titulo
-            </td>
-            <td>
-                Categoria
-            </td>
-            <td>
-                Posteado
-            </td>
-            <td>
-                Creacion
-            </td>
-            <td>
-                Actualizacion
-            </td>
-            <td>
-                Acciones
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($posts as $post)
-            <tr>
-                <td>
-                    {{$post->id}}
-                </td>
-                <td>
-                    {{$post->title}}
-                </td>
-                <td>
-                    {{$post->category->title}}
-                </td>
-                <td>
-                    {{$post->posted}}
-                </td>
-                <td>
-                    {{$post->created_at->format('d-m-Y')}}
-                </td>
-                <td>
-                    {{$post->updated_at->format('d-m-Y')}}
-                </td>
-                <td>
-                    <a href="{{ route('post.show',$post->id) }}" class="btn btn-primary">Show</a>
-                    <a href="{{ route('post.edit',$post->id) }}" class="btn btn-primary">
-                        <i class="fa fa-pen"></i> Edit
-                    </a>
-                    <a href="{{ route('post-comment.post',$post->id) }}" class="btn btn-primary">
-                        <i class="fa fa-comment-dots"></i> Comentarios
-                    </a>
-                    
-                    <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $post->id }}" class="btn btn-danger">
-                       <i class="fa fa-trash-alt"></i> Delete
-                    </button>
-                
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Lista de posts</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="text-primary">
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Titulo
+                        </th>
+                        <th>
+                            Categoria
+                        </th>
+                        <th>
+                            Posteado
+                        </th>
+                        <th>
+                            Creacion
+                        </th>
+                        <th>
+                            Actualizacion
+                        </th>
+                        <th class="text-right">
+                            Acciones
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($posts as $post)
+                        <tr>
+                            <td>
+                                {{$post->id}}
+                            </td>
+                            <td>
+                                {{$post->title}}
+                            </td>
+                            <td>
+                                {{$post->category->title}}
+                            </td>
+                            <td>
+                                {{$post->posted}}
+                            </td>
+                            <td>
+                                {{$post->created_at->format('d-m-Y')}}
+                            </td>
+                            <td>
+                                {{$post->updated_at->format('d-m-Y')}}
+                            </td>
+                            <td class="text-right">
+                                <a href="{{ route('post.show',$post->id) }}" class="btn btn-primary">Show</a>
+                                <a href="{{ route('post.edit',$post->id) }}" class="btn btn-primary">
+                                    <i class="fa fa-pen"></i> Edit
+                                </a>
+                                <a href="{{ route('post-comment.post',$post->id) }}" class="btn btn-primary">
+                                    <i class="fa fa-comment-dots"></i> Comentarios
+                                </a>
+                                
+                                <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $post->id }}" class="btn btn-danger">
+                                   <i class="fa fa-trash-alt"></i> Delete
+                                </button>
+                            
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 {{$posts->links()}}
 

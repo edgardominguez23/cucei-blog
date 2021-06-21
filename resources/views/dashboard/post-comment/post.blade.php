@@ -4,7 +4,7 @@
 <div class="col-6 mb-3">
     <form action="{{route('post-comment.post',1)}}" id="filterForm">
         <div class="form-row">
-            <div class="col-10">
+            <div class="col-10 input-group no-border">
                 <select id="filterPost" class="form-control">
                     @foreach ($posts as $p)
                         <option value="{{$p->id}}"
@@ -23,62 +23,71 @@
 
 @if (count($postComments) > 0)
 
-<table class="table">
-    <thead>
-        <tr>
-            <td>
-                Id
-            </td>
-            <td>
-                Titulo
-            </td>
-            <td>
-                Usuario
-            </td>
-            <td>
-                Aprovado
-            </td>
-            <td>
-                Creacion
-            </td>
-            <td>
-                Actualizacion
-            </td>
-            <td>
-                Acciones
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($postComments as $postComment)
-            <tr>
-                <td>
-                    {{$postComment->id}}
-                </td>
-                <td>
-                    {{$postComment->title}}
-                </td>
-                <td>
-                    {{$postComment->user->name}}
-                </td>
-                <td>
-                    {{$postComment->approved}}
-                </td>
-                <td>
-                    {{$postComment->created_at->format('d-m-Y')}}
-                </td>
-                <td>
-                    {{$postComment->updated_at->format('d-m-Y')}}
-                </td>
-                <td>
-                    <a href="{{ route('post-comment.show',$postComment->id) }}" class="btn btn-primary">Show</a>
-                    <button data-id="{{ $postComment->id }}" class="approved btn btn-{{$postComment->approved == 1 ? "success" : "danger"}}">{{$postComment->approved == 1 ? "Aprovado" : "Rechazado"}}</button>
-                    <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $postComment->id }}" class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Lista de comentarios por post</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="text-primary">
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Titulo
+                        </th>
+                        <th>
+                            Usuario
+                        </th>
+                        <th>
+                            Aprovado
+                        </th>
+                        <th>
+                            Creacion
+                        </th>
+                        <th>
+                            Actualizacion
+                        </th>
+                        <th class="text-right">
+                            Acciones
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($postComments as $postComment)
+                        <tr>
+                            <td>
+                                {{$postComment->id}}
+                            </td>
+                            <td>
+                                {{$postComment->title}}
+                            </td>
+                            <td>
+                                {{$postComment->user->name}}
+                            </td>
+                            <td>
+                                {{$postComment->approved}}
+                            </td>
+                            <td>
+                                {{$postComment->created_at->format('d-m-Y')}}
+                            </td>
+                            <td>
+                                {{$postComment->updated_at->format('d-m-Y')}}
+                            </td>
+                            <td class="text-right">
+                                <a href="{{ route('post-comment.show',$postComment->id) }}" class="btn btn-primary">Show</a>
+                                <button data-id="{{ $postComment->id }}" class="approved btn btn-{{$postComment->approved == 1 ? "success" : "danger"}}">{{$postComment->approved == 1 ? "Aprovado" : "Rechazado"}}</button>
+                                <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $postComment->id }}" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 {{$postComments->links()}}
 

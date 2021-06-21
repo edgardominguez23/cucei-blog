@@ -1,55 +1,64 @@
 @extends('dashboard.master')
 @section('content')
 
-<table class="table">
-    <thead>
-        <tr>
-            <td>
-                Id
-            </td>
-            <td>
-                Nombre
-            </td>
-            <td>
-                Email
-            </td>
-            <td>
-                Creacion
-            </td>
-            <td>
-                Actualizacion
-            </td>
-            <td>
-                Acciones
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($contacts as $contact)
-            <tr>
-                <td>
-                    {{$contact->id}}
-                </td>
-                <td>
-                    {{$contact->name}}
-                </td>
-                <td>
-                    {{$contact->email}}
-                </td>
-                <td>
-                    {{$contact->created_at->format('d-m-Y')}}
-                </td>
-                <td>
-                    {{$contact->updated_at->format('d-m-Y')}}
-                </td>
-                <td>
-                    <a href="{{ route('contact.show',$contact->id) }}" class="btn btn-primary">Show</a>
-                    <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $contact->id }}" class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Lista de contactos</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="text-primary">
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Creacion
+                        </th>
+                        <th>
+                            Actualizacion
+                        </th>
+                        <th class="text-right">
+                            Acciones
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($contacts as $contact)
+                        <tr>
+                            <td>
+                                {{$contact->id}}
+                            </td>
+                            <td>
+                                {{$contact->name}}
+                            </td>
+                            <td>
+                                {{$contact->email}}
+                            </td>
+                            <td>
+                                {{$contact->created_at->format('d-m-Y')}}
+                            </td>
+                            <td>
+                                {{$contact->updated_at->format('d-m-Y')}}
+                            </td>
+                            <td class="text-right">
+                                <a href="{{ route('contact.show',$contact->id) }}" class="btn btn-primary">Show</a>
+                                <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $contact->id }}" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>            
+        </div>
+    </div>
+</div>
 
 {{$contacts->links()}}
 
