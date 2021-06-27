@@ -55,7 +55,7 @@ class PostController extends Controller
         //return "Alan".$request->input('title');
 
         $post = Post::create($request->validated());
-
+        PostImage::create(['image'=> 'postIconDefault.png', 'post_id'=>$post->id]);
         $post->tags()->sync($request->tags_id);
 
         return back()->with('status','Post create with exit');
@@ -112,9 +112,14 @@ class PostController extends Controller
         $filename = time().".".$request->image->extension();
 
         $request->image->move(public_path('images'), $filename);
-
-        PostImage::create(['image'=>$filename, 'post_id'=>$post->id]);
-
+        $img = PostImage::find($post->id);
+        $img->image = $filename;
+        $img->save();
+        //dd($img->image);
+        //dd($filename);
+        //dd($img);
+        //PostImage::create(['image'=>$filename, 'post_id'=>$post->id]);
+        //$img->image()->save($filename);
         return back()->with('status','Image updated successfully');
     }
 

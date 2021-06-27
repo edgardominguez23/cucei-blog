@@ -15,15 +15,27 @@
 
 <br>
 
-<form action="{{ route( "post.image",$post->id )}}" method="post" enctype="multipart/form-data">
-@csrf
-    <div class="row">
-        <div class="col">
-            <input type="file" name="image" class="form-control">
-        </div>
-        <div class="col">
-            <input type="submit" class="btn btn-primary" value="Subir">
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Imagen del post</h4>
+    </div>
+    <div class="card-body">
+        <form action="{{ route( "post.image",$post->id )}}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+                <div class="col">
+                    <input type="file" name="image" class="form-control">
+                </div>
+                <div class="col">
+                    <input type="submit" class="btn btn-primary" value="Subir">
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-3">
+                <img class="w-100" src="/images/{{$post->image->image}}">
+            </div>
         </div>
     </div>
-</form>
+</div>
 @endsection
