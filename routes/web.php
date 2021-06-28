@@ -33,12 +33,12 @@ Route::resource('dashboard/post-comment', PostCommentController::class)->only([
 Route::get('dashboard/post-comment/{post}/post',[PostCommentController::class,'post'])->name('post-comment.post');
 Route::post('dashboard/post-comment/process/{postComment}',[PostCommentController::class,'process']);
 
-Route::get('/', [ApiWebController::class,'index'])->name('index');
-Route::get('/detail/{id}', [ApiWebController::class,'detail']);
-Route::get('/post-category/{id}', [ApiWebController::class,'post_category']);
-Route::get('/contact', [ApiWebController::class,'contact']);
-Route::get('/categories', [ApiWebController::class,'categories']);
+Route::get('/home', [ApiWebController::class,'index'])->name('index');
+Route::get('/home/detail/{id}', [ApiWebController::class,'detail']);
+Route::get('/home/post-category/{id}', [ApiWebController::class,'post_category']);
+Route::get('/home/contact', [ApiWebController::class,'contact']);
+Route::get('/home/categories', [ApiWebController::class,'categories']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

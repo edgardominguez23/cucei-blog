@@ -2453,23 +2453,23 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_5__.default);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue_router__WEBPACK_IMPORTED_MODULE_5__.default({
   mode: 'history',
   routes: [{
-    path: '/',
+    path: '/home',
     component: _components_PostListComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default,
     name: "list"
   }, {
-    path: '/categories',
+    path: '/home/categories',
     component: _components_CategoryListDefaultComponent_vue__WEBPACK_IMPORTED_MODULE_4__.default,
     name: "list-category"
   }, {
-    path: '/detail/:id',
+    path: '/home/detail/:id',
     component: _components_PostDetailComponent_vue__WEBPACK_IMPORTED_MODULE_1__.default,
     name: "detail"
   }, {
-    path: '/post-category/:category_id',
+    path: '/home/post-category/:category_id',
     component: _components_PostCategoryComponent_vue__WEBPACK_IMPORTED_MODULE_2__.default,
     name: "post-category"
   }, {
-    path: '/contact',
+    path: '/home/contact',
     component: _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_3__.default,
     name: "contact"
   }] // short for `routes: routes`

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <router-link class="navbar-brand text-white" to="/">CUCEI-Blog</router-link>
+    <router-link class="navbar-brand text-white" to="/home">CUCEI-Blog</router-link>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item text-white">
-          <router-link to="/" class="nav-link text-white">HOME</router-link>
+          <router-link to="/home" class="nav-link text-white">HOME</router-link>
         </li>
         <li class="nav-item text-white">
-          <router-link to="/categories" class="nav-link text-white">Categorias</router-link>
+          <router-link to="/home/categories" class="nav-link text-white">Categorias</router-link>
         </li>
       </ul>
       
