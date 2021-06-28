@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
+    use HasFactory;
+    
     protected $fillable = ['title','url_clean','content','category_id','posted'];
 
     public function category(){

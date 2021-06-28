@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Post;
+//use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
 
@@ -15,7 +15,8 @@ class PostTableSeeder extends Seeder
      */
     public function run()
     {
-        Post::truncate();
+        \App\Models\Post::factory(50)->create();
+        /*Post::truncate();
         
         $categories = Category::all();
 
@@ -29,6 +30,6 @@ class PostTableSeeder extends Seeder
                     'category_id' => $c->id,
                 ]);
             }
-        }
+        }*/
     }
 }
