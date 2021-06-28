@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class CheckRolAdmin
+class CheckRolRegular
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class CheckRolAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->rol->key == "admin"){
+        if(auth()->user()->rol->key == "regular"){
             return $next($request);
         }
 
