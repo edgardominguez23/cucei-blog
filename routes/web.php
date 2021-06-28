@@ -1,11 +1,13 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\web\ApiWebController;
 use App\Http\Controllers\dashboard\PostController;
 use App\Http\Controllers\dashboard\UserController;
 use App\Http\Controllers\dashboard\ContactController;
 use App\Http\Controllers\dashboard\CategoryController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\dashboard\PostCommentController;
 
 /*
@@ -18,6 +20,26 @@ use App\Http\Controllers\dashboard\PostCommentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::resource('dashboard/post', PostController::class);
 Route::post('dashboard/post/{post}/image', [PostController::class,'image'])->name('post.image');
 Route::resource('dashboard/category', CategoryController::class);
@@ -39,6 +61,6 @@ Route::get('/home/post-category/{id}', [ApiWebController::class,'post_category']
 Route::get('/home/contact', [ApiWebController::class,'contact']);
 Route::get('/home/categories', [ApiWebController::class,'categories']);
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/index', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

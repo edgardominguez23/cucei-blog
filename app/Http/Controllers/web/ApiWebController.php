@@ -11,6 +11,7 @@ class ApiWebController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('rol.regular');
+        $this->middleware('verified');
     }
 
     public function index(){
