@@ -23,7 +23,7 @@ class UserController extends Controller
     
     public function index()
     {
-        $users = User::orderBy('created_at','desc')->paginate(4);
+        $users = User::with('rol')->orderBy('created_at','desc')->paginate(4);
 
         return view("dashboard.user.index",['users'=> $users]);
     }

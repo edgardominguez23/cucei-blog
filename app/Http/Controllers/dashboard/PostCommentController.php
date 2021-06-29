@@ -22,7 +22,7 @@ class PostCommentController extends Controller
 
     public function index()
     {
-        $postComments = PostComment::orderBy('created_at','desc')->paginate(4);
+        $postComments = PostComment::with('user')->orderBy('created_at','desc')->paginate(4);
 
         return view("dashboard.post-comment.index",['postComments'=> $postComments]);
     }
@@ -30,7 +30,7 @@ class PostCommentController extends Controller
     public function post(Post $post)
     {
         $posts = Post::all();
-        $postComments = PostComment::orderBy('created_at','desc')->where('post_id','=',$post->id)->paginate(4);
+        $postComments = PostComment::with('user')->orderBy('created_at','desc')->where('post_id','=',$post->id)->paginate(4);
 
         return view("dashboard.post-comment.post",['postComments'=> $postComments,'posts'=> $posts, 'post' => $post]);
     }
