@@ -2155,6 +2155,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2179,6 +2181,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
     this.getPost();
@@ -2191,6 +2204,30 @@ __webpack_require__.r(__webpack_exports__);
         return response.json();
       }).then(function (json) {
         return _this.post = json.data;
+      });
+    },
+    forceFileDownload: function forceFileDownload(response, title) {
+      console.log(title);
+      var url = window.URL.createObjectURL(new Blob([response.data]));
+      var link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', title);
+      document.body.appendChild(link);
+      link.click();
+    },
+    downloadWithAxios: function downloadWithAxios(url, title) {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'get',
+        url: url,
+        responseType: 'arraybuffer'
+      }).then(function (response) {
+        console.log(response);
+
+        _this2.forceFileDownload(response, title);
+      })["catch"](function () {
+        return console.log('error occured');
       });
     }
   },
@@ -38953,6 +38990,44 @@ var render = function() {
                       }),
                       0
                     )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.post.archivos
+                  ? _c("div", [
+                      _c(
+                        "div",
+                        { staticClass: "container py-0" },
+                        _vm._l(_vm.post.archivos, function(archivo, index) {
+                          return _c(
+                            "div",
+                            { key: index, attrs: { xs12: "", md4: "" } },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  on: {
+                                    click: function($event) {
+                                      _vm.downloadWithAxios(
+                                        "/storage/" + archivo.ruta.substr(7),
+                                        archivo.nombre_original
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._s(archivo.nombre_original) +
+                                      " Download"
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ])
                   : _vm._e()
               ],
               1

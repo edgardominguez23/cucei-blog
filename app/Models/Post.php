@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Tag;
+use App\Models\Archivo;
 use App\Models\Category;
 use App\Models\PostImage;
 use Illuminate\Database\Eloquent\Model;
@@ -25,5 +26,9 @@ class Post extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function archivos(){
+        return $this->hasMany(Archivo::class);
     }
 }

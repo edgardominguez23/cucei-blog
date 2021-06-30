@@ -66,6 +66,7 @@ Route::post('dashboard/post-comment/process/{postComment}',[PostCommentControlle
 
 Route::get('/home', [ApiWebController::class,'index'])->name('index');
 Route::get('/home/detail/{id}', [ApiWebController::class,'detail']);
+Route::get('home/detail/{archivo}', [ArchivoController::class, 'download']);
 Route::get('/home/post-category/{id}', [ApiWebController::class,'post_category']);
 Route::get('/home/contact', [ApiWebController::class,'contact']);
 Route::get('/home/categories', [ApiWebController::class,'categories']);

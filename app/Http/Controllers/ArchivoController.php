@@ -45,7 +45,7 @@ class ArchivoController extends Controller
     public function store(Request $request)
     {
         if($request->hasFile('archivo') && $request->file('archivo')->isValid()){
-            $ruta = $request->archivo->store('documents');
+            $ruta = $request->archivo->store('public');
             $archivo = new Archivo();
             $archivo->ruta = $ruta;
             $archivo->nombre_original = $request->archivo->getClientOriginalName();

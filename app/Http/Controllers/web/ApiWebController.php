@@ -29,4 +29,7 @@ class ApiWebController extends Controller
     public function categories(){
         return view('web.index');
     }
+    public function download(){
+        return view('web.index');
+    }
 }
