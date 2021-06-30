@@ -9,6 +9,7 @@ use App\Models\PostImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostPost;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -20,7 +21,8 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('rol.admin');
+        $this->authorizeResource(Post::class, 'post');
+        //$this->middleware('rol.admin');
     }
 
     public function index()
