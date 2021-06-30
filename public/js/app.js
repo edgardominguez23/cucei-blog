@@ -2191,6 +2191,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
@@ -38972,31 +38974,34 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _vm.post.tags
-                  ? _c(
-                      "div",
-                      _vm._l(_vm.post.tags, function(tag) {
-                        return _c("div", { key: tag }, [
-                          _c("h4", [
-                            _c(
-                              "span",
-                              {
-                                staticClass:
-                                  "badge bg-warning text-dark badge-lg"
-                              },
-                              [_vm._v(_vm._s(tag.title))]
-                            )
+                  ? _c("div", [
+                      _c(
+                        "div",
+                        { staticClass: "row" },
+                        _vm._l(_vm.post.tags, function(tag) {
+                          return _c("div", { key: tag }, [
+                            _c("h4", [
+                              _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "badge badge-pill badge-info mr-3"
+                                },
+                                [_vm._v(_vm._s(tag.title))]
+                              )
+                            ])
                           ])
-                        ])
-                      }),
-                      0
-                    )
+                        }),
+                        0
+                      )
+                    ])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.post.archivos
                   ? _c("div", [
                       _c(
                         "div",
-                        { staticClass: "container py-0" },
+                        { staticClass: "btn-toolbar" },
                         _vm._l(_vm.post.archivos, function(archivo, index) {
                           return _c(
                             "div",
@@ -39005,20 +39010,19 @@ var render = function() {
                               _c(
                                 "button",
                                 {
-                                  staticClass: "btn btn-primary",
+                                  staticClass: "btn btn-primary mr-3",
                                   on: {
                                     click: function($event) {
                                       _vm.downloadWithAxios(
                                         "/storage/" + archivo.ruta.substr(7),
-                                        archivo.nombre_original
+                                        "archivo" + index
                                       )
                                     }
                                   }
                                 },
                                 [
                                   _vm._v(
-                                    _vm._s(archivo.nombre_original) +
-                                      " Download"
+                                    " archivo" + _vm._s(index) + " Download"
                                   )
                                 ]
                               )

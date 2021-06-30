@@ -10,17 +10,19 @@
                  <router-link class="btn btn-success" :to="{name: 'post-category', params: {category_id: post.category.id}}">{{post.category.title}}</router-link>
                 <p class="card-text">{{post.content}}</p>
                 <div v-if="post.tags">
+                    <div class="row">
                     <div v-for="tag in post.tags" :key="tag">
-                        <h4><span class="badge bg-warning text-dark badge-lg">{{tag.title}}</span></h4>
+                        <h4><span class="badge badge-pill badge-info mr-3">{{tag.title}}</span></h4>
+                    </div>
                     </div>
                 </div>
                 <div v-if="post.archivos">
-                    <div class="container py-0">
+                    <div class="btn-toolbar">
                         <div v-for="(archivo, index) in post.archivos" :key="index" xs12 md4>
                             <!--{{archivo.ruta.substr(7)}}-->
                             <!--LbNCNVVRYODFV0Kjqr3WWYZOmJcFQMJZZfrehrgd.png-->
                             <!--<img class="card-img-top" :src="'/storage/'+archivo.ruta.substr(7)"/>-->
-                            <button class="btn btn-primary" v-on:click="downloadWithAxios('/storage/'+ archivo.ruta.substr(7) ,archivo.nombre_original)">{{ archivo.nombre_original }} Download</button>
+                            <button class="btn btn-primary mr-3" v-on:click="downloadWithAxios('/storage/'+ archivo.ruta.substr(7) ,'archivo'+index)"> archivo{{ index }} Download</button>
                         </div>
                     </div>
                 </div>
@@ -65,7 +67,7 @@ export default {
             .catch(() => console.log('error occured'))
         },
     },
-      data: function () {
+    data: function () {
       return {
         postSelected: "",
         post: ""
