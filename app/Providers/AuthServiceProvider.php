@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Laravel\Passport\Passport;
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         Passport::routes();
-        //
+
+        Gate::define('admin-modules', function(User $user){
+            //dd($user);
+            return $user->rol_id == '1';
+        });
     }
 }

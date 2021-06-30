@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StoreCategoryPost;
 
 class CategoryController extends Controller
@@ -16,12 +17,13 @@ class CategoryController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('rol.admin');
+        //$this->middleware('auth');
+        //$this->middleware('rol.admin');
     }
     
     public function index()
     {
+        Gate::authorize('admin-modules');
         $categories = Category::orderBy('created_at','desc')->paginate(4);
 
         return view("dashboard.category.index",['categories'=> $categories]);
@@ -34,6 +36,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        Gate::authorize('admin-modules');
         return view("dashboard.category.create",['category' => new Category()]);
     }
 
@@ -45,6 +48,7 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryPost $request)
     {
+        Gate::authorize('admin-modules');
         Category::create($request->validated());
 
         return back()->with('status','Category create with exit');
@@ -58,6 +62,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        Gate::authorize('admin-modules');
         return view("dashboard.category.show",["category"=>$category]);
     }
 
@@ -69,6 +74,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+        Gate::authorize('admin-modules');
         return view("dashboard.category.edit",["category"=>$category]);
     }
 
@@ -81,6 +87,7 @@ class CategoryController extends Controller
      */
     public function update(StoreCategoryPost $request, Category $category)
     {
+        Gate::authorize('admin-modules');
         $category->update($request->validated());
 
         return back()->with('status','Category updated successfully');
@@ -94,6 +101,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        Gate::authorize('admin-modules');
         $category->delete();
         return back()->with('status','Category deleted successfully');
     }
