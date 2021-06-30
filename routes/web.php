@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArchivoController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\web\ApiWebController;
 use App\Http\Controllers\dashboard\TagController;
 use App\Http\Controllers\dashboard\PostController;
@@ -74,3 +75,6 @@ Route::get('/home/categories', [ApiWebController::class,'categories']);
 Auth::routes(['verify' => true]);
 
 Route::get('/index', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('login/social/{provider}', [LoginController::class, 'redirectToProvider']);
+Route::get('login/social/callback/{provider}', [LoginController::class, 'handleProviderCallback']);

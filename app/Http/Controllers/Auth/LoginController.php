@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -51,5 +52,19 @@ class LoginController extends Controller
                 return '/';
                 break;
         }
+    }
+
+    public function redirectToProvider($provider = "github"){
+
+        if(!config("services.$provider")) abort(404);
+
+        return Socialite::driver("$provider")->redirect();
+    }
+
+    public function handleProviderCallback($provider = "github"){
+
+        if(!config("services.$provider")) abort(404);
+
+        $user = Socialite::driver("$provider")->user();
     }
 }
