@@ -9,6 +9,11 @@
                 <h1 class="card-title">{{post.title}}</h1>
                  <router-link class="btn btn-success" :to="{name: 'post-category', params: {category_id: post.category.id}}">{{post.category.title}}</router-link>
                 <p class="card-text">{{post.content}}</p>
+                <div v-if="post.tags">
+                    <div v-for="tag in post.tags" :key="tag">
+                        <h4><span class="badge bg-warning text-dark badge-lg">{{tag.title}}</span></h4>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -22,6 +22,7 @@ class PostController extends ApiResponseController
     public function show(Post $post){
         $post->image;
         $post->category;
+        $post->tags;
         return $this->successResponse($post);
     }
 

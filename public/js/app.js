@@ -2174,6 +2174,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
     this.getPost();
@@ -38927,7 +38932,28 @@ var render = function() {
                 _vm._v(" "),
                 _c("p", { staticClass: "card-text" }, [
                   _vm._v(_vm._s(_vm.post.content))
-                ])
+                ]),
+                _vm._v(" "),
+                _vm.post.tags
+                  ? _c(
+                      "div",
+                      _vm._l(_vm.post.tags, function(tag) {
+                        return _c("div", { key: tag }, [
+                          _c("h4", [
+                            _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "badge bg-warning text-dark badge-lg"
+                              },
+                              [_vm._v(_vm._s(tag.title))]
+                            )
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  : _vm._e()
               ],
               1
             )
