@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArchivoController;
 use App\Http\Controllers\web\ApiWebController;
+use App\Http\Controllers\dashboard\TagController;
 use App\Http\Controllers\dashboard\PostController;
 use App\Http\Controllers\dashboard\UserController;
 use App\Http\Controllers\dashboard\ContactController;
@@ -44,6 +45,7 @@ Route::get('/', function () {
 Route::resource('dashboard/post', PostController::class);
 Route::post('dashboard/post/{post}/image', [PostController::class,'image'])->name('post.image');
 Route::resource('dashboard/category', CategoryController::class);
+Route::resource('dashboard/tag', TagController::class);
 Route::resource('dashboard/user', UserController::class);
 
 Route::resource('dashboard/contact', ContactController::class)->only([

@@ -27,6 +27,12 @@
             <p>Categorias</p>
           </a>
         </li>
+        <li class="{{Request::path() == 'dashboard/tag' ? 'active' : ''}}">
+          <a href="{{route('tag.index')}}">
+            <i class="nc-icon nc-layout-11"></i>
+            <p>Tags</p>
+          </a>
+        </li>
         <li class="{{Request::path() == 'dashboard/user' ? 'active' : ''}}">
             <a href="{{route('user.index')}}">
               <i class="nc-icon nc-single-02"></i>
