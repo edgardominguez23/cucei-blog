@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArchivoController;
 use App\Http\Controllers\web\ApiWebController;
 use App\Http\Controllers\dashboard\PostController;
 use App\Http\Controllers\dashboard\UserController;
@@ -48,9 +49,15 @@ Route::resource('dashboard/user', UserController::class);
 Route::resource('dashboard/contact', ContactController::class)->only([
     'index','show','destroy',
 ]);
+Route::resource('dashboard/archivo', ArchivoController::class)->except([
+    'edit','update','show',
+]);
 Route::resource('dashboard/post-comment', PostCommentController::class)->only([
     'index','show','destroy',
 ]);
+
+Route::get('dashboard/archivo/download/{archivo}', [ArchivoController::class, 'download'])->name('archivo.download');
+Route::get('dashboard/archivo/{post}/post',[ArchivoController::class,'post'])->name('archivo.post');
 
 Route::get('dashboard/post-comment/{post}/post',[PostCommentController::class,'post'])->name('post-comment.post');
 Route::post('dashboard/post-comment/process/{postComment}',[PostCommentController::class,'process']);

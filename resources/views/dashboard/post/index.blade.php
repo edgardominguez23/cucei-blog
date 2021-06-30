@@ -66,7 +66,9 @@
                                 <a href="{{ route('post-comment.post',$post->id) }}" class="btn btn-primary">
                                     <i class="fa fa-comment-dots"></i> Comentarios
                                 </a>
-                                
+                                <a href="{{ route('archivo.post',$post->id) }}" class="btn btn-primary">
+                                    <i class="fa fa-comment-dots"></i> Archivos
+                                </a>
                                 <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $post->id }}" class="btn btn-danger">
                                    <i class="fa fa-trash-alt"></i> Delete
                                 </button>
