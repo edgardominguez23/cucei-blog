@@ -22,5 +22,5 @@ un archivo para poder descargar y consultar lo que contiene este.
 [Requisitos del proyecto](https://github.com/samuelmg/programacion-internet/blob/master/requisitos-proyecto.md)
 
 ## Integrantes:
-Dominguez Murillo Edgar Alan
+Dominguez Edgar
 
