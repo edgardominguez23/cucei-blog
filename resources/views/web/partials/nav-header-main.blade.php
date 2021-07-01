@@ -26,16 +26,6 @@
             @csrf
           </form>
         </li>
-  
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Perfil
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Perfil</a>
-            <div class="dropdown-divider"></div>
-          </div>
-        </li>
       </ul>
     </div>
   </nav>
