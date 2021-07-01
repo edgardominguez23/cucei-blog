@@ -23,7 +23,7 @@
         </li>
         <li class="{{Request::path() == 'dashboard/tag' ? 'active' : ''}}">
           <a href="{{route('tag.index')}}">
-            <i class="nc-icon nc-layout-11"></i>
+            <i class="nc-icon nc-tag-content"></i>
             <p>Tags</p>
           </a>
         </li>

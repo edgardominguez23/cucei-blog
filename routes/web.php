@@ -76,5 +76,5 @@ Auth::routes(['verify' => true]);
 
 Route::get('/index', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('login/social/{provider}', [LoginController::class, 'redirectToProvider']);
-Route::get('login/social/callback/{provider}', [LoginController::class, 'handleProviderCallback']);
+//Route::get('login/social/{provider}', [LoginController::class, 'redirectToProvider']);
+//Route::get('login/social/callback/{provider}', [LoginController::class, 'handleProviderCallback']);

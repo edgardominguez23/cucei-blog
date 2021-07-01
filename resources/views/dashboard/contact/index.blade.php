@@ -49,8 +49,12 @@
                                 {{$contact->updated_at->format('d-m-Y')}}
                             </td>
                             <td class="text-right">
-                                <a href="{{ route('contact.show',$contact->id) }}" class="btn btn-primary">Show</a>
-                                <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $contact->id }}" class="btn btn-danger">Delete</button>
+                                <a href="{{ route('contact.show',$contact->id) }}" class="btn btn-primary mb-1">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $contact->id }}" class="btn btn-danger mb-1">
+                                    <i class="fa fa-trash"></i>
+                                </button>
                             </td>
                         </tr>
                     @endforeach

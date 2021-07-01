@@ -59,18 +59,20 @@
                                 {{$post->updated_at->format('d-m-Y')}}
                             </td>
                             <td class="text-right">
-                                <a href="{{ route('post.show',$post->id) }}" class="btn btn-primary">Show</a>
-                                <a href="{{ route('post.edit',$post->id) }}" class="btn btn-primary">
-                                    <i class="fa fa-pen"></i> Edit
+                                <a href="{{ route('post.show',$post->id) }}" class="btn btn-primary mb-1">
+                                    <i class="fa fa-eye"></i>
                                 </a>
-                                <a href="{{ route('post-comment.post',$post->id) }}" class="btn btn-primary">
-                                    <i class="fa fa-comment-dots"></i> Comentarios
+                                <a href="{{ route('post.edit',$post->id) }}" class="btn btn-primary mb-1">
+                                    <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="{{ route('archivo.post',$post->id) }}" class="btn btn-primary">
-                                    <i class="fa fa-comment-dots"></i> Archivos
+                                <a href="{{ route('post-comment.post',$post->id) }}" class="btn btn-primary mb-1">
+                                    <i class="fa fa-comments"></i>
                                 </a>
-                                <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $post->id }}" class="btn btn-danger">
-                                   <i class="fa fa-trash-alt"></i> Delete
+                                <a href="{{ route('archivo.post',$post->id) }}" class="btn btn-primary mb-1">
+                                    <i class="fa fa-file"></i> 
+                                </a>
+                                <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $post->id }}" class="btn btn-danger mb-1">
+                                   <i class="fa fa-trash"></i>
                                 </button>
                             
                             </td>

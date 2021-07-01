@@ -5,32 +5,32 @@
       <section class="mb-4">
         <!-- Facebook -->
         <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-facebook-f"></i
+          ><i class="fa fa-facebook-f"></i
         ></a>
   
         <!-- Twitter -->
         <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-twitter"></i
+          ><i class="fa fa-twitter"></i
         ></a>
   
         <!-- Google -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-google"></i
+        <a class="btn btn-outline-light btn-floating m-1" href="/home" role="button"
+          ><i class="fa fa-google"></i
         ></a>
   
         <!-- Instagram -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-instagram"></i
+        <a class="btn btn-outline-light btn-floating m-1" href="/home" role="button"
+          ><i class="fa fa-instagram"></i
         ></a>
   
         <!-- Linkedin -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-linkedin-in"></i
+        <a class="btn btn-outline-light btn-floating m-1" href="/home" role="button"
+          ><i class="fa fa-linkedin-in"></i
         ></a>
   
         <!-- Github -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-github"></i
+        <a class="btn btn-outline-light btn-floating m-1" href="/home" role="button"
+          ><i class="fa fa-github"></i
         ></a>
       </section>
       <!-- Section: Social media -->

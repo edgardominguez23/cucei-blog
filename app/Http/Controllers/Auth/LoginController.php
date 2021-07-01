@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
+use App\Models\SocialLogin;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
@@ -58,13 +61,39 @@ class LoginController extends Controller
 
         if(!config("services.$provider")) abort(404);
 
-        return Socialite::driver("$provider")->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 
     public function handleProviderCallback($provider = "github"){
 
         if(!config("services.$provider")) abort(404);
 
-        $user = Socialite::driver("$provider")->user();
+        $userS = Socialite::driver($provider)->user();
+
+        if($userSocial = SocialLogin::where('nick_email',$userS->email)->orWhere('nick_email', $userS->nickname)->first()){
+            return $this->loginAndRedirect($userSocial->user);
+        }else{
+            $user = User::create([
+                'name' => Str::of($userS->name)->explode('')[0],
+                'rol_id' => 2,
+                'email' => $userS->email ? $userS->email : $userS->nickname,
+                'email_verified_at' => now(),
+                'password' => bcrypt(Str::random(10))
+            ]);
+
+            SocialLogin::create([
+                'user_id' => $user->id,
+                'provider' => $provider,
+                'nick_email' => $userS->email ? $userS->email : $userS->nickname,
+                'social_id' => $userS->id
+            ]);
+
+            return $this->loginAndRedirect($user);
+        }
+    }
+
+    public function loginAndRedirect($user){
+        Auth::login($user);
+        return redirect()->to('/home');
     }
 }

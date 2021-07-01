@@ -45,10 +45,16 @@
                                 {{$tag->updated_at->format('d-m-Y')}}
                             </td>
                             <td class="text-right">
-                                <a href="{{ route('tag.show',$tag->id) }}" class="btn btn-primary">Show</a>
-                                <a href="{{ route('tag.edit',$tag->id) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('tag.show',$tag->id) }}" class="btn btn-primary mb-1">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a href="{{ route('tag.edit',$tag->id) }}" class="btn btn-primary mb-1">
+                                    <i class="fa fa-edit"></i>
+                                </a>
                                 
-                                    <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $tag->id }}" class="btn btn-danger">Delete</button>
+                                    <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $tag->id }}" class="btn btn-danger mb-1">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
                             
                             </td>
                         </tr>
