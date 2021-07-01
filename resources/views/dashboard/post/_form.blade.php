@@ -22,6 +22,9 @@
                 <option {{$post->category_id == $id ? 'selected="selected"' : ''}} value="{{$id}}">{{$title}}</option>
             @endforeach
         </select>
+        @error('category_id')
+            <small class="text-danger">{{ $message}}</small>
+        @enderror
     </div>
 
     <div class="form-group">
@@ -38,6 +41,9 @@
                 <option {{in_array($id, old('tags_id') ?: $post->tags->pluck("id")->toArray()) ? "selected" : ""}} value="{{$id}}">{{$title}}</option>
             @endforeach
         </select>
+        @error('tags_id')
+            <small class="text-danger">{{ $message}}</small>
+        @enderror
     </div>
 
     <div class="form-group">

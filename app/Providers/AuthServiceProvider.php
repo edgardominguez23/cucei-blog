@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Models\Post;
 use App\Models\User;
 use App\Policies\PostPolicy;
-use Laravel\Passport\Passport;
+//use Laravel\Passport\Passport;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -30,7 +30,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        Passport::routes();
+        //Passport::routes();
 
         Gate::define('admin-modules', function(User $user){
             //dd($user);
