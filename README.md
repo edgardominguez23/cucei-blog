@@ -12,11 +12,11 @@ y mejorar el diseño del sitio web, es decir que el usuario se sienta cómodo co
 además de cumplir con los requisitos dados por el profesor.
 Por lo que el blog fue adaptado para cumplir los requisitos como los son las validaciones,
 esquemas para la base de datos, como son los seeders, migration, factories estos componentes
-son propiamente dados en Laravel, la autenticación y autorización, que el proyecto se encuentran
-dos tipos de usuarios uno que requiere autenticación y validación del correo, el otro usuario es
+son propiamente dados en Laravel, la autenticación y autorización, en el proyecto ahi 
+dos tipos de usuarios, uno que requiere autenticación y validación del correo, el otro usuario es
 el que administra la información es decir que es el único que puede agregar, eliminar y modificar los elementos 
 dados en el blog.
-Por otro lado, en el usuario regular este puede observar los posts, ya sea la información, imagen, si este contiene
+Por otro lado, el usuario regular puede observar los posts, ya sea la información, imagen, si este contiene
 un archivo para poder descargar y consultar lo que contiene este.
 
 [Requisitos del proyecto](https://github.com/samuelmg/programacion-internet/blob/master/requisitos-proyecto.md)
