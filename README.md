@@ -24,3 +24,5 @@ un archivo para poder descargar y consultar lo que contiene este.
 ## Integrantes:
 Dominguez Edgar
 
+##Instrucciones de instalación
+Para que el usuario pueda visualizar los archivos, usar el siguiente comando: php artisan storage:link
